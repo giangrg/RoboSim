@@ -3,24 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RoboSimLib.Interfaces;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace RoboSimLib.Classes {
-   public class Robot : IPlayer {
+   public class Robot : PictureBox {
+
+      private const int moveSpeed = 100;
+
+      public Direction FaceDirection { get; set; }
+
       public bool MoveUp() {
-         return false;
+         if (!FaceDirection.Equals(Direction.North)) {
+            FaceDirection = Direction.North;
+            return false;
+         }
+         return true;
       }
 
       public bool MoveRight() {
-         return false;
+         if (!FaceDirection.Equals(Direction.East)) {
+            FaceDirection = Direction.East;
+            return false;
+         }
+         return true;
       }
 
       public bool MoveDown() {
-         return false;
+         if (!FaceDirection.Equals(Direction.South)) {
+            FaceDirection = Direction.South;
+            return false;
+         }
+         return true;
       }
 
       public bool MoveLeft() {
-         return false;
+         if (!FaceDirection.Equals(Direction.West)) {
+            FaceDirection = Direction.West;
+            return false;
+         }
+         return true;
       }
    }
 }

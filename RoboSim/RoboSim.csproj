@@ -96,6 +96,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\RoboIcon.ico" />
+    <Content Include="Resources\Robot.png" />
     <Content Include="Resources\Table.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
