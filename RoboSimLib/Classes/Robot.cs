@@ -7,19 +7,19 @@ using RoboSimLib.Interfaces;
 
 namespace RoboSimLib.Classes {
    public class Robot : IPlayer {
-      bool MoveUp() {
+      public bool MoveUp() {
          return false;
       }
 
-      bool MoveRight() {
+      public bool MoveRight() {
          return false;
       }
 
-      bool MoveDown() {
+      public bool MoveDown() {
          return false;
       }
 
-      bool MoveLeft() {
+      public bool MoveLeft() {
          return false;
       }
    }
