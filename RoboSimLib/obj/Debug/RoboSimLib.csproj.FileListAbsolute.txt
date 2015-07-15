@@ -1,5 +1,0 @@
-D:\GRG\Documents\CV Files\Job Apps\RobertWalters_BauerMedia\Test\RoboSim\RoboSimLib\obj\Debug\RoboSimLib.csprojResolveAssemblyReference.cache
-D:\GRG\Documents\CV Files\Job Apps\RobertWalters_BauerMedia\Test\RoboSim\RoboSimLib\bin\Debug\RoboSimLib.dll
-D:\GRG\Documents\CV Files\Job Apps\RobertWalters_BauerMedia\Test\RoboSim\RoboSimLib\bin\Debug\RoboSimLib.pdb
-D:\GRG\Documents\CV Files\Job Apps\RobertWalters_BauerMedia\Test\RoboSim\RoboSimLib\obj\Debug\RoboSimLib.dll
-D:\GRG\Documents\CV Files\Job Apps\RobertWalters_BauerMedia\Test\RoboSim\RoboSimLib\obj\Debug\RoboSimLib.pdb
