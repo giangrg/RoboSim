@@ -184,7 +184,7 @@
          this.label1.Name = "label1";
          this.label1.Size = new System.Drawing.Size(100, 23);
          this.label1.TabIndex = 4;
-         this.label1.Text = "Y Position";
+         this.label1.Text = "Y (0 - 400)";
          // 
          // txtY
          // 
@@ -202,7 +202,7 @@
          this.lblX.Name = "lblX";
          this.lblX.Size = new System.Drawing.Size(100, 23);
          this.lblX.TabIndex = 2;
-         this.lblX.Text = "X Position";
+         this.lblX.Text = "X (0 - 400)";
          // 
          // txtX
          // 
