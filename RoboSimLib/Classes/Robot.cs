@@ -45,13 +45,13 @@ namespace RoboSimLib.Classes {
          FaceDirection = imgOr;
 
          if (FaceDirection.Equals(Direction.East)) {
-            RoboImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            RoboImg.RotateFlip(RotateFlipType.Rotate270FlipNone);
          }
          if (FaceDirection.Equals(Direction.South)) {
             RoboImg.RotateFlip(RotateFlipType.Rotate180FlipNone);
          }
          if (FaceDirection.Equals(Direction.West)) {
-            RoboImg.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            RoboImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
          }
       }
 

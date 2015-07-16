@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RoboSimLib;
@@ -85,7 +86,26 @@ namespace RoboSim {
          if (ofdImportFile.ShowDialog() == DialogResult.OK) {
             if (File.Exists(ofdImportFile.FileName)) {
                using (StreamReader filereader = new StreamReader(ofdImportFile.FileName)) {
-                  var line = filereader.ReadLine();
+                  string line = string.Empty;
+                  while ((line = filereader.ReadLine()) != null) {
+                     // Remove all special characters
+                     line = Regex.Replace(line, "[^0-9a-zA-Z ]+", string.Empty);
+                     var data = line.Split(' ');
+                     // Get all textboxes in the panel
+                     var textboxes = grbxControls.Controls.OfType<TextBox>().ToList();
+                     foreach (var textbox in textboxes) {
+                        var name = Regex.Replace(textbox.Name, "[txt]", string.Empty);
+                        // If the textbox name matches the name from the imported data...
+                        if (name.Equals(data[0], StringComparison.InvariantCultureIgnoreCase)) {
+                           // ...set the textbox value to that of the imported data
+                           textbox.Text = data[1].ToString();
+                        }
+                     }
+                     // Set the combobox
+                     if (data[0].Equals("F", StringComparison.InvariantCultureIgnoreCase)) {
+                        cmbF.Text = data[1];
+                     }
+                  }
                }
             }
          }
