@@ -3,47 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Drawing;
 
 namespace RoboSimLib.Classes {
-   public class Robot : PictureBox {
+   public class Robot {
 
-      private const int moveSpeed = 100;
+      private Image RoboImg { get; set; }
+      private const int roboSize = 100;
 
-      public Direction FaceDirection { get; set; }
-
-      public bool MoveRobot(Direction dir) {
-         var newPos = Location;
-
-         if (!FaceDirection.Equals(dir)) {
-            FaceDirection = dir;
-            return false;
+      private Point _coordinate;
+      public Point Coordinate {
+         get { return _coordinate; }
+         set {
+            if ((value.X >= 0 && value.X <= 400) && (value.Y >= 0 && value.Y <= 400)) {
+               _coordinate = value;
+            }
          }
-
-         if (dir.Equals(Direction.North)) {
-            newPos.Y -= moveSpeed;
-         }
-         if (dir.Equals(Direction.East)) {
-            newPos.X += moveSpeed;
-         }
-         if (dir.Equals(Direction.South)) {
-            newPos.Y += moveSpeed;
-         }
-         if (dir.Equals(Direction.West)) {
-            newPos.X -= moveSpeed;
-         }
-
-         Location = newPos;
-
-         return true;
       }
 
-      public bool CheckBoundsX(Point pos) {
-         if((pos.X >= 12 && pos.X <= 500)) {
-            return true;
-         }
-         return false;
+      public Robot() {
+
+      }
+
+      public Robot(Image img) {
+         RoboImg = img;
+         RoboImg.RotateFlip(RotateFlipType.Rotate180FlipX);
+      }
+
+      public void DrawRobo(Graphics table) {
+         table.DrawImage(RoboImg, _coordinate.X, _coordinate.Y, roboSize, roboSize);
       }
    }
 }

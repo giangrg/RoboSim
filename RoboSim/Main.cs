@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,53 +14,29 @@ using RoboSimLib.Classes;
 namespace RoboSim {
    public partial class Main : Form {
 
-      private Robot RoboPlayer;
+      private Robot RoboPlayer = null;
+      private Graphics Table = null;
 
       public Main() {
          InitializeComponent();
-         KeyDown += new KeyEventHandler(Robo_KeyDown);
-         InitialiseRobot();
-         UpdateStatus();
+         RoboPlayer = new Robot(AppResource.Robot);
       }
 
-      private void InitialiseRobot() {
-         RoboPlayer = new Robot() {
-            Image = AppResource.Robot,
-            Size = new Size(100, 100),
-            Location = new Point(12, 12),
-            FaceDirection = Direction.North,
-            BackColor = Color.Transparent
-         };
-         this.Controls.Add(RoboPlayer);
+      private void pnlTable_Paint(object sender, PaintEventArgs e) {
+         Table = e.Graphics;
+         
+         // Set the origin to the South-West corner
+         Table.Transform = new Matrix(1, 0, 0, -1, 0, pnlTable.Height);
+
+         RoboPlayer.DrawRobo(Table);
       }
 
-      private void UpdateStatus() {
-         tlstXPos.Text = "X: " + RoboPlayer.Location.X.ToString();
-         tlstYPos.Text = "Y: " + RoboPlayer.Location.Y.ToString();
-         tlstFDirection.Text = "F: " + RoboPlayer.FaceDirection.ToString();
-      }
-
-      private void Robo_KeyDown(object sender, KeyEventArgs e) {
-
-         var currentPos = RoboPlayer.Location;
-
-         if (e.KeyData == Keys.Up) {
-            RoboPlayer.MoveRobot(Direction.North);
-         }
-
-         if (e.KeyData == Keys.Right) {
-            RoboPlayer.MoveRobot(Direction.East);
-         }
-
-         if (e.KeyData == Keys.Down) {
-            RoboPlayer.MoveRobot(Direction.South);
-         }
-
-         if (e.KeyData == Keys.Left) {
-            RoboPlayer.MoveRobot(Direction.West);
-         }
-
-         UpdateStatus();
+      private void btnPlace_Click(object sender, EventArgs e) {
+         int xPos = 0, yPos = 0;
+         Int32.TryParse(txtX.Text, out xPos);
+         Int32.TryParse(txtY.Text, out yPos);
+         RoboPlayer.Coordinate = new Point(xPos, yPos);
+         pnlTable.Refresh();
       }
    }
 }
