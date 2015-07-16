@@ -8,12 +8,14 @@ using System.Drawing;
 namespace RoboSimLib.Classes {
    public class Robot {
 
-      private Image RoboImg { get; set; }
+      // Defines the number of pixels per unit.
       private const int roboSize = 100;
+      private Image RoboImg { get; set; }
 
+      #region Properties
       private Point _coordinate;
       /// <summary>
-      /// Current position of the robot.
+      /// Get or set the current position of the robot.
       /// </summary>
       public Point Coordinate {
          get { return _coordinate; }
@@ -25,20 +27,16 @@ namespace RoboSimLib.Classes {
       }
 
       /// <summary>
-      /// Direction the robot is currently facing.
+      /// Get or set the direction the robot's cardinal direction.
       /// </summary>
       public Direction FaceDirection { get; set; }
-
-      /// <summary>
-      /// Default constructor.
-      /// </summary>
-      public Robot() { }
+      #endregion Properties
 
       /// <summary>
       /// Instantiates a Robot object
       /// </summary>
       /// <param name="img">Image</param>
-      /// <param name="imgOr">Initial orientation</param>
+      /// <param name="imgOr">Cardinal direction</param>
       public Robot(Image img, Direction imgOr = Direction.North) {
          RoboImg = img;
          RoboImg.RotateFlip(RotateFlipType.Rotate180FlipNone);
@@ -55,14 +53,18 @@ namespace RoboSimLib.Classes {
          }
       }
 
+      #region Methods
       /// <summary>
-      /// Draws the robot image.
+      /// Draws the robot.
       /// </summary>
-      /// <param name="table"></param>
+      /// <param name="table">Table where the robot will be placed</param>
       public void DrawRobo(Graphics table) {
          table.DrawImage(RoboImg, _coordinate.X, _coordinate.Y, roboSize, roboSize);
       }
 
+      /// <summary>
+      /// Moves the robot 1 unit forward in the direction it is facing.
+      /// </summary>
       public void MoveForward() {
          int xPos = _coordinate.X;
          int yPos = _coordinate.Y;
@@ -83,6 +85,10 @@ namespace RoboSimLib.Classes {
          Coordinate = new Point(xPos, yPos);
       }
 
+      /// <summary>
+      /// Rotates the robot 1 cardinal point to the left or right.
+      /// </summary>
+      /// <param name="opt">Direction to rotate the robot</param>
       public void RotateRobo(RotateOptions opt) {
          if(opt.Equals(RotateOptions.Left)) {
             RoboImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
@@ -102,5 +108,6 @@ namespace RoboSimLib.Classes {
             }
          }
       }
+      #endregion Methods
    }
 }
