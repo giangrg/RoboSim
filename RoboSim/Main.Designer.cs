@@ -82,7 +82,7 @@
          this.btnImport.Name = "btnImport";
          this.btnImport.Size = new System.Drawing.Size(206, 35);
          this.btnImport.TabIndex = 15;
-         this.btnImport.Text = "Import Data";
+         this.btnImport.Text = "&Import Data";
          this.btnImport.UseVisualStyleBackColor = true;
          this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
          // 
@@ -103,7 +103,7 @@
          this.btnReport.Name = "btnReport";
          this.btnReport.Size = new System.Drawing.Size(206, 35);
          this.btnReport.TabIndex = 11;
-         this.btnReport.Text = "Report";
+         this.btnReport.Text = "R&eport";
          this.btnReport.UseVisualStyleBackColor = true;
          this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
          // 
@@ -126,7 +126,7 @@
          this.btnMove.Name = "btnMove";
          this.btnMove.Size = new System.Drawing.Size(206, 35);
          this.btnMove.TabIndex = 14;
-         this.btnMove.Text = "Move";
+         this.btnMove.Text = "Mo&ve";
          this.btnMove.UseVisualStyleBackColor = true;
          this.btnMove.Click += new System.EventHandler(this.btnMove_Click);
          // 
@@ -136,7 +136,7 @@
          this.btnRight.Name = "btnRight";
          this.btnRight.Size = new System.Drawing.Size(100, 35);
          this.btnRight.TabIndex = 13;
-         this.btnRight.Text = "Right";
+         this.btnRight.Text = "&Right";
          this.btnRight.UseVisualStyleBackColor = true;
          this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
          // 
@@ -146,7 +146,7 @@
          this.btnLeft.Name = "btnLeft";
          this.btnLeft.Size = new System.Drawing.Size(100, 35);
          this.btnLeft.TabIndex = 12;
-         this.btnLeft.Text = "Left";
+         this.btnLeft.Text = "&Left";
          this.btnLeft.UseVisualStyleBackColor = true;
          this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
          // 
@@ -164,7 +164,7 @@
          this.btnPlace.Name = "btnPlace";
          this.btnPlace.Size = new System.Drawing.Size(206, 35);
          this.btnPlace.TabIndex = 7;
-         this.btnPlace.Text = "Place";
+         this.btnPlace.Text = "&Place";
          this.btnPlace.UseVisualStyleBackColor = true;
          this.btnPlace.Click += new System.EventHandler(this.btnPlace_Click);
          // 
