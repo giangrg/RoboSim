@@ -11,7 +11,7 @@ namespace RoboSimTest {
 
       [SetUp]
       public void SetUp() {
-         TestRobo = new Robot();
+         
       }
    }
 }

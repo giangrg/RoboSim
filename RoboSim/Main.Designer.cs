@@ -31,12 +31,12 @@
          this.btnLeft = new System.Windows.Forms.Button();
          this.btnPlace = new System.Windows.Forms.Button();
          this.label2 = new System.Windows.Forms.Label();
-         this.txtF = new System.Windows.Forms.TextBox();
          this.label1 = new System.Windows.Forms.Label();
          this.txtY = new System.Windows.Forms.TextBox();
          this.lblX = new System.Windows.Forms.Label();
          this.txtX = new System.Windows.Forms.TextBox();
          this.btnMove = new System.Windows.Forms.Button();
+         this.cmbF = new System.Windows.Forms.ComboBox();
          this.grbxControls.SuspendLayout();
          this.SuspendLayout();
          // 
@@ -53,13 +53,13 @@
          // 
          // grbxControls
          // 
+         this.grbxControls.Controls.Add(this.cmbF);
          this.grbxControls.Controls.Add(this.btnMove);
          this.grbxControls.Controls.Add(this.btnReport);
          this.grbxControls.Controls.Add(this.btnRight);
          this.grbxControls.Controls.Add(this.btnLeft);
          this.grbxControls.Controls.Add(this.btnPlace);
          this.grbxControls.Controls.Add(this.label2);
-         this.grbxControls.Controls.Add(this.txtF);
          this.grbxControls.Controls.Add(this.label1);
          this.grbxControls.Controls.Add(this.txtY);
          this.grbxControls.Controls.Add(this.lblX);
@@ -88,6 +88,7 @@
          this.btnRight.TabIndex = 9;
          this.btnRight.Text = "Right";
          this.btnRight.UseVisualStyleBackColor = true;
+         this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
          // 
          // btnLeft
          // 
@@ -97,6 +98,7 @@
          this.btnLeft.TabIndex = 8;
          this.btnLeft.Text = "Left";
          this.btnLeft.UseVisualStyleBackColor = true;
+         this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
          // 
          // btnPlace
          // 
@@ -116,14 +118,6 @@
          this.label2.Size = new System.Drawing.Size(100, 23);
          this.label2.TabIndex = 6;
          this.label2.Text = "F Direction";
-         // 
-         // txtF
-         // 
-         this.txtF.Location = new System.Drawing.Point(128, 110);
-         this.txtF.Name = "txtF";
-         this.txtF.Size = new System.Drawing.Size(100, 22);
-         this.txtF.TabIndex = 5;
-         this.txtF.Text = "North";
          // 
          // label1
          // 
@@ -167,6 +161,15 @@
          this.btnMove.TabIndex = 11;
          this.btnMove.Text = "Move";
          this.btnMove.UseVisualStyleBackColor = true;
+         this.btnMove.Click += new System.EventHandler(this.btnMove_Click);
+         // 
+         // cmbF
+         // 
+         this.cmbF.FormattingEnabled = true;
+         this.cmbF.Location = new System.Drawing.Point(128, 110);
+         this.cmbF.Name = "cmbF";
+         this.cmbF.Size = new System.Drawing.Size(100, 24);
+         this.cmbF.TabIndex = 12;
          // 
          // Main
          // 
@@ -183,6 +186,7 @@
          this.Name = "Main";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "RoboSim";
+         this.Load += new System.EventHandler(this.Main_Load);
          this.grbxControls.ResumeLayout(false);
          this.grbxControls.PerformLayout();
          this.ResumeLayout(false);
@@ -196,7 +200,6 @@
       private System.Windows.Forms.Label lblX;
       private System.Windows.Forms.TextBox txtX;
       private System.Windows.Forms.Label label2;
-      private System.Windows.Forms.TextBox txtF;
       private System.Windows.Forms.Label label1;
       private System.Windows.Forms.TextBox txtY;
       private System.Windows.Forms.Button btnPlace;
@@ -204,6 +207,7 @@
       private System.Windows.Forms.Button btnRight;
       private System.Windows.Forms.Button btnReport;
       private System.Windows.Forms.Button btnMove;
+      private System.Windows.Forms.ComboBox cmbF;
    }
 }
 
