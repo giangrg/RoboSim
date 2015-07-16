@@ -43,8 +43,13 @@ namespace RoboSim {
          Int32.TryParse(txtX.Text, out xPos);
          Int32.TryParse(txtY.Text, out yPos);
 
+         // Place a robot on the table
          RoboPlayer = new Robot(AppResource.Robot, (Direction)cmbF.SelectedIndex);
          RoboPlayer.Coordinate = new Point(xPos, yPos);
+
+         // Activate controls
+         grbxMoveCtrl.Enabled = true;
+         grbxUtilityCtrl.Enabled = true;
 
          pnlTable.Refresh();
       }
@@ -62,6 +67,22 @@ namespace RoboSim {
       private void btnMove_Click(object sender, EventArgs e) {
          RoboPlayer.MoveForward();
          pnlTable.Refresh();
+      }
+
+      private void btnImport_Click(object sender, EventArgs e) {
+         if (ofdImportFile.ShowDialog() == DialogResult.OK) {
+
+         }
+
+      }
+
+      private void btnReport_Click(object sender, EventArgs e) {
+         StringBuilder reportStr = new StringBuilder();
+         reportStr.AppendLine("X: " + RoboPlayer.Coordinate.X);
+         reportStr.AppendLine("Y: " + RoboPlayer.Coordinate.Y);
+         reportStr.AppendLine("F: " + RoboPlayer.FaceDirection.ToString());
+
+         MessageBox.Show(reportStr.ToString(), "Robot Status", MessageBoxButtons.OK);
       }
    }
 }
