@@ -12,17 +12,33 @@ namespace RoboSimLib.Classes {
       private const int roboSize = 100;
 
       private Point _coordinate;
+      /// <summary>
+      /// Current position of the robot.
+      /// </summary>
       public Point Coordinate {
          get { return _coordinate; }
          set {
-            if ((value.X >= 0 && value.X <= 400) && (value.Y >= 0 && value.Y <= 400)) {
+            if ((value.X >= 0 && value.X <= 500 - roboSize) && (value.Y >= 0 && value.Y <= 500 - roboSize)) {
                _coordinate = value;
             }
          }
       }
 
+      /// <summary>
+      /// Direction the robot is currently facing.
+      /// </summary>
       public Direction FaceDirection { get; set; }
 
+      /// <summary>
+      /// Default constructor.
+      /// </summary>
+      public Robot() { }
+
+      /// <summary>
+      /// Instantiates a Robot object
+      /// </summary>
+      /// <param name="img">Image</param>
+      /// <param name="imgOr">Initial orientation</param>
       public Robot(Image img, Direction imgOr = Direction.North) {
          RoboImg = img;
          RoboImg.RotateFlip(RotateFlipType.Rotate180FlipX);
@@ -39,6 +55,10 @@ namespace RoboSimLib.Classes {
          }
       }
 
+      /// <summary>
+      /// Draws the robot image.
+      /// </summary>
+      /// <param name="table"></param>
       public void DrawRobo(Graphics table) {
          table.DrawImage(RoboImg, _coordinate.X, _coordinate.Y, roboSize, roboSize);
       }

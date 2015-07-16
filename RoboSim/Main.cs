@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RoboSimLib;
@@ -39,21 +41,29 @@ namespace RoboSim {
       }
 
       private void btnPlace_Click(object sender, EventArgs e) {
-         int xPos = 0, yPos = 0;
-         Int32.TryParse(txtX.Text, out xPos);
-         Int32.TryParse(txtY.Text, out yPos);
+         try {
+            int xPos = 0, yPos = 0;
 
-         // Place a robot on the table
-         RoboPlayer = new Robot(AppResource.Robot, (Direction)cmbF.SelectedIndex);
-         RoboPlayer.Coordinate = new Point(xPos, yPos);
+            // Get the values from the textboxes
+            xPos = Convert.ToInt32(txtX.Text);
+            yPos = Convert.ToInt32(txtY.Text);
 
-         // Activate controls
-         grbxMoveCtrl.Enabled = true;
-         grbxUtilityCtrl.Enabled = true;
+            // Place a robot on the table
+            RoboPlayer = new Robot(AppResource.Robot, (Direction)cmbF.SelectedIndex);
+            RoboPlayer.Coordinate = new Point(xPos, yPos);
 
-         pnlTable.Refresh();
+            // Activate controls
+            grbxMoveCtrl.Enabled = true;
+            grbxUtilityCtrl.Enabled = true;
+
+            pnlTable.Refresh();
+         }
+         catch (Exception) {
+            MessageBox.Show("Error: Invalid X or Y value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+         }
       }
 
+      #region Movement_Events
       private void btnLeft_Click(object sender, EventArgs e) {
          RoboPlayer.RotateRobo(RotateOptions.Left);
          pnlTable.Refresh();
@@ -68,10 +78,16 @@ namespace RoboSim {
          RoboPlayer.MoveForward();
          pnlTable.Refresh();
       }
+      #endregion Movement_Events
 
+      #region Utility_Events
       private void btnImport_Click(object sender, EventArgs e) {
          if (ofdImportFile.ShowDialog() == DialogResult.OK) {
-
+            if (File.Exists(ofdImportFile.FileName)) {
+               using (StreamReader filereader = new StreamReader(ofdImportFile.FileName)) {
+                  var line = filereader.ReadLine();
+               }
+            }
          }
 
       }
@@ -84,5 +100,6 @@ namespace RoboSim {
 
          MessageBox.Show(reportStr.ToString(), "Robot Status", MessageBoxButtons.OK);
       }
+      #endregion Utility Events
    }
 }
