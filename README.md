@@ -1,3 +1,3 @@
 # RoboSim
 
-This is a simple winforms application made using C#.Net.
+This is a simple Toy Robot Simulator application made using C#.Net and WinForms.
