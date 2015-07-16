@@ -42,6 +42,7 @@ namespace RoboSim {
          }
       }
 
+      #region Command_Events
       private void btnPlace_Click(object sender, EventArgs e) {
          try {
             int xPos = 0, yPos = 0;
@@ -64,7 +65,6 @@ namespace RoboSim {
          }
       }
 
-      #region Movement_Events
       private void btnLeft_Click(object sender, EventArgs e) {
          RoboPlayer.RotateRobo(RotateOptions.Left);
          pnlTable.Refresh();
@@ -79,7 +79,7 @@ namespace RoboSim {
          RoboPlayer.MoveForward();
          pnlTable.Refresh();
       }
-      #endregion Movement_Events
+      #endregion Command_Events
 
       #region Utility_Events
       private void btnImport_Click(object sender, EventArgs e) {
@@ -88,39 +88,41 @@ namespace RoboSim {
                using (StreamReader filereader = new StreamReader(ofdImportFile.FileName)) {
                   string line = string.Empty;
                   while ((line = filereader.ReadLine()) != null) {
-
-                     // Split command at index [0] and parameter at index [1]
-                     var data = line.Split(' ').ToList();
-                     // Process command
-                     var command = (CommandOptions)Enum.Parse(typeof(CommandOptions), data[0]);
-                     if (command.Equals(CommandOptions.PLACE)) {
-                        // Process parameters
-                        List<string> parameters;
-                        if (data.Count > 1) {
-                           parameters = data[1].Split(',').ToList();
-                           txtX.Text = parameters[0];
-                           txtY.Text = parameters[1];
-                           cmbF.Text = parameters[2];
-                           btnPlace_Click(null, null);
-                        }
-                     }
-                     if (command.Equals(CommandOptions.MOVE)) {
-                        btnMove_Click(null, null);
-                     }
-                     if (command.Equals(CommandOptions.LEFT)) {
-                        btnLeft_Click(null, null);
-                     }
-                     if (command.Equals(CommandOptions.RIGHT)) {
-                        btnRight_Click(null, null);
-                     }
-                     if (command.Equals(CommandOptions.REPORT)) {
-                        btnReport_Click(null, null);
-                     }
+                     ProcessInputCommands(line);
                   }
                }
             }
          }
+      }
 
+      private void ProcessInputCommands(string comLine) {
+         // Split command at index [0] and parameter at index [1]
+         var data = comLine.Split(' ').ToList();
+         // Process command
+         var command = (CommandOptions)Enum.Parse(typeof(CommandOptions), data[0]);
+         if (command.Equals(CommandOptions.PLACE)) {
+            // Process parameters
+            List<string> parameters;
+            if (data.Count > 1) {
+               parameters = data[1].Split(',').ToList();
+               txtX.Text = parameters[0];
+               txtY.Text = parameters[1];
+               cmbF.Text = parameters[2];
+               btnPlace_Click(null, null);
+            }
+         }
+         if (command.Equals(CommandOptions.MOVE)) {
+            btnMove_Click(null, null);
+         }
+         if (command.Equals(CommandOptions.LEFT)) {
+            btnLeft_Click(null, null);
+         }
+         if (command.Equals(CommandOptions.RIGHT)) {
+            btnRight_Click(null, null);
+         }
+         if (command.Equals(CommandOptions.REPORT)) {
+            btnReport_Click(null, null);
+         }
       }
 
       private void EnableControls() {
