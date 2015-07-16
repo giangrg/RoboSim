@@ -13,36 +13,37 @@ namespace RoboSimLib.Classes {
 
       public Direction FaceDirection { get; set; }
 
-      public bool MoveUp() {
-         if (!FaceDirection.Equals(Direction.North)) {
-            FaceDirection = Direction.North;
+      public bool MoveRobot(Direction dir) {
+         var newPos = Location;
+
+         if (!FaceDirection.Equals(dir)) {
+            FaceDirection = dir;
             return false;
          }
+
+         if (dir.Equals(Direction.North)) {
+            newPos.Y -= moveSpeed;
+         }
+         if (dir.Equals(Direction.East)) {
+            newPos.X += moveSpeed;
+         }
+         if (dir.Equals(Direction.South)) {
+            newPos.Y += moveSpeed;
+         }
+         if (dir.Equals(Direction.West)) {
+            newPos.X -= moveSpeed;
+         }
+
+         Location = newPos;
+
          return true;
       }
 
-      public bool MoveRight() {
-         if (!FaceDirection.Equals(Direction.East)) {
-            FaceDirection = Direction.East;
-            return false;
+      public bool CheckBoundsX(Point pos) {
+         if((pos.X >= 12 && pos.X <= 500)) {
+            return true;
          }
-         return true;
-      }
-
-      public bool MoveDown() {
-         if (!FaceDirection.Equals(Direction.South)) {
-            FaceDirection = Direction.South;
-            return false;
-         }
-         return true;
-      }
-
-      public bool MoveLeft() {
-         if (!FaceDirection.Equals(Direction.West)) {
-            FaceDirection = Direction.West;
-            return false;
-         }
-         return true;
+         return false;
       }
    }
 }

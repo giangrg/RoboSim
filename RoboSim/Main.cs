@@ -19,6 +19,7 @@ namespace RoboSim {
          InitializeComponent();
          KeyDown += new KeyEventHandler(Robo_KeyDown);
          InitialiseRobot();
+         UpdateStatus();
       }
 
       private void InitialiseRobot() {
@@ -32,31 +33,33 @@ namespace RoboSim {
          this.Controls.Add(RoboPlayer);
       }
 
+      private void UpdateStatus() {
+         tlstXPos.Text = "X: " + RoboPlayer.Location.X.ToString();
+         tlstYPos.Text = "Y: " + RoboPlayer.Location.Y.ToString();
+         tlstFDirection.Text = "F: " + RoboPlayer.FaceDirection.ToString();
+      }
+
       private void Robo_KeyDown(object sender, KeyEventArgs e) {
 
-         int x = RoboPlayer.Location.X;
-         int y = RoboPlayer.Location.Y;
+         var currentPos = RoboPlayer.Location;
 
          if (e.KeyData == Keys.Up) {
-            y -= 100;
+            RoboPlayer.MoveRobot(Direction.North);
          }
 
          if (e.KeyData == Keys.Right) {
-            x += 100;
+            RoboPlayer.MoveRobot(Direction.East);
          }
 
          if (e.KeyData == Keys.Down) {
-            y += 100;
+            RoboPlayer.MoveRobot(Direction.South);
          }
 
          if (e.KeyData == Keys.Left) {
-            x -= 100;
+            RoboPlayer.MoveRobot(Direction.West);
          }
 
-         tlstXPos.Text = "X: " + x.ToString();
-         tlstYPos.Text = "Y: " + y.ToString();
-         tlstFDirection.Text = "F: " + RoboPlayer.FaceDirection.ToString();
-         RoboPlayer.Location = new Point(x, y);
+         UpdateStatus();
       }
    }
 }

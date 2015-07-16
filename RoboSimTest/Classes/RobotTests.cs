@@ -22,10 +22,10 @@ namespace RoboSimTest {
          // Act
          bool[] expected = { true, false, false, false };
          bool[] actual = {
-                            TestRobo.MoveUp(),
-                            TestRobo.MoveRight(),
-                            TestRobo.MoveDown(),
-                            TestRobo.MoveLeft()
+                            TestRobo.MoveRobot(Direction.North),
+                            TestRobo.MoveRobot(Direction.East),
+                            TestRobo.MoveRobot(Direction.South),
+                            TestRobo.MoveRobot(Direction.West)
                          };
 
          // Assert
@@ -40,10 +40,10 @@ namespace RoboSimTest {
          // Act
          bool[] expected = { true, false, false, false };
          bool[] actual = {
-                            TestRobo.MoveRight(),
-                            TestRobo.MoveUp(),
-                            TestRobo.MoveDown(),
-                            TestRobo.MoveLeft()
+                            TestRobo.MoveRobot(Direction.East),
+                            TestRobo.MoveRobot(Direction.North),
+                            TestRobo.MoveRobot(Direction.South),
+                            TestRobo.MoveRobot(Direction.West)
                          };
 
          // Assert
@@ -58,10 +58,10 @@ namespace RoboSimTest {
          // Act
          bool[] expected = { true, false, false, false };
          bool[] actual = {
-                            TestRobo.MoveDown(),
-                            TestRobo.MoveUp(),
-                            TestRobo.MoveRight(),
-                            TestRobo.MoveLeft()
+                            TestRobo.MoveRobot(Direction.South),
+                            TestRobo.MoveRobot(Direction.North),
+                            TestRobo.MoveRobot(Direction.East),
+                            TestRobo.MoveRobot(Direction.West)
                          };
 
          // Assert
@@ -76,10 +76,10 @@ namespace RoboSimTest {
          // Act
          bool[] expected = { true, false, false, false };
          bool[] actual = {
-                            TestRobo.MoveLeft(),
-                            TestRobo.MoveUp(),
-                            TestRobo.MoveRight(),
-                            TestRobo.MoveDown()
+                            TestRobo.MoveRobot(Direction.West),
+                            TestRobo.MoveRobot(Direction.North),
+                            TestRobo.MoveRobot(Direction.East),
+                            TestRobo.MoveRobot(Direction.South)
                          };
 
          // Assert
