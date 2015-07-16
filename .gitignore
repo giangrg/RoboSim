@@ -23,3 +23,10 @@
 /RoboSimTest/obj/Debug/RoboSimTest.csprojResolveAssemblyReference.cache
 /RoboSimTest/obj/Debug/RoboSimTest.dll
 /RoboSimTest/obj/Debug/RoboSimTest.pdb
+/packages
+/RoboSim/obj
+/RoboSim/bin
+/RoboSimLib/obj
+/RoboSimLib/bin
+/RoboSimTest/obj
+/RoboSimTest/bin
