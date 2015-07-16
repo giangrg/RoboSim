@@ -1,3 +1,4 @@
-X: 100
-Y: 200
-F: South
+PLACE 2,2,South
+MOVE
+LEFT
+REPORT

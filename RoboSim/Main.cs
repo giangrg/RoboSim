@@ -19,6 +19,7 @@ namespace RoboSim {
 
       private Robot RoboPlayer = null;
       private Graphics Table = null;
+      private const int magnitude = 100; // Pixels in 1 unit.
 
       public Main() {
          InitializeComponent();
@@ -46,16 +47,15 @@ namespace RoboSim {
             int xPos = 0, yPos = 0;
 
             // Get the values from the textboxes
-            xPos = Convert.ToInt32(txtX.Text);
-            yPos = Convert.ToInt32(txtY.Text);
+            xPos = Convert.ToInt32(txtX.Text) * magnitude;
+            yPos = Convert.ToInt32(txtY.Text) * magnitude;
 
             // Place a robot on the table
             RoboPlayer = new Robot(AppResource.Robot, (Direction)cmbF.SelectedIndex);
             RoboPlayer.Coordinate = new Point(xPos, yPos);
 
             // Activate controls
-            grbxMoveCtrl.Enabled = true;
-            grbxUtilityCtrl.Enabled = true;
+            EnableControls();
 
             pnlTable.Refresh();
          }
@@ -88,22 +88,33 @@ namespace RoboSim {
                using (StreamReader filereader = new StreamReader(ofdImportFile.FileName)) {
                   string line = string.Empty;
                   while ((line = filereader.ReadLine()) != null) {
-                     // Remove all special characters
-                     line = Regex.Replace(line, "[^0-9a-zA-Z ]+", string.Empty);
-                     var data = line.Split(' ');
-                     // Get all textboxes in the panel
-                     var textboxes = grbxControls.Controls.OfType<TextBox>().ToList();
-                     foreach (var textbox in textboxes) {
-                        var name = Regex.Replace(textbox.Name, "[txt]", string.Empty);
-                        // If the textbox name matches the name from the imported data...
-                        if (name.Equals(data[0], StringComparison.InvariantCultureIgnoreCase)) {
-                           // ...set the textbox value to that of the imported data
-                           textbox.Text = data[1].ToString();
+
+                     // Split command at index [0] and parameter at index [1]
+                     var data = line.Split(' ').ToList();
+                     // Process command
+                     var command = (CommandOptions)Enum.Parse(typeof(CommandOptions), data[0]);
+                     if (command.Equals(CommandOptions.PLACE)) {
+                        // Process parameters
+                        List<string> parameters;
+                        if (data.Count > 1) {
+                           parameters = data[1].Split(',').ToList();
+                           txtX.Text = parameters[0];
+                           txtY.Text = parameters[1];
+                           cmbF.Text = parameters[2];
+                           btnPlace_Click(null, null);
                         }
                      }
-                     // Set the combobox
-                     if (data[0].Equals("F", StringComparison.InvariantCultureIgnoreCase)) {
-                        cmbF.Text = data[1];
+                     if (command.Equals(CommandOptions.MOVE)) {
+                        btnMove_Click(null, null);
+                     }
+                     if (command.Equals(CommandOptions.LEFT)) {
+                        btnLeft_Click(null, null);
+                     }
+                     if (command.Equals(CommandOptions.RIGHT)) {
+                        btnRight_Click(null, null);
+                     }
+                     if (command.Equals(CommandOptions.REPORT)) {
+                        btnReport_Click(null, null);
                      }
                   }
                }
@@ -112,10 +123,15 @@ namespace RoboSim {
 
       }
 
+      private void EnableControls() {
+         grbxMoveCtrl.Enabled = true;
+         grbxUtilityCtrl.Enabled = true;
+      }
+
       private void btnReport_Click(object sender, EventArgs e) {
          StringBuilder reportStr = new StringBuilder();
-         reportStr.AppendLine("X: " + RoboPlayer.Coordinate.X);
-         reportStr.AppendLine("Y: " + RoboPlayer.Coordinate.Y);
+         reportStr.AppendLine("X: " + RoboPlayer.Coordinate.X/magnitude);
+         reportStr.AppendLine("Y: " + RoboPlayer.Coordinate.Y/magnitude);
          reportStr.AppendLine("F: " + RoboPlayer.FaceDirection.ToString());
 
          MessageBox.Show(reportStr.ToString(), "Robot Status", MessageBoxButtons.OK);

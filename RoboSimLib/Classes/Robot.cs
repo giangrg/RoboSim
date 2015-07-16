@@ -41,7 +41,7 @@ namespace RoboSimLib.Classes {
       /// <param name="imgOr">Initial orientation</param>
       public Robot(Image img, Direction imgOr = Direction.North) {
          RoboImg = img;
-         RoboImg.RotateFlip(RotateFlipType.Rotate180FlipX);
+         RoboImg.RotateFlip(RotateFlipType.Rotate180FlipNone);
          FaceDirection = imgOr;
 
          if (FaceDirection.Equals(Direction.East)) {
