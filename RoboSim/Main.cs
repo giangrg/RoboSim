@@ -99,7 +99,7 @@ namespace RoboSim {
          // Split command at index [0] and parameter at index [1]
          var data = comLine.Split(' ').ToList();
          // Process command
-         var command = (CommandOptions)Enum.Parse(typeof(CommandOptions), data[0]);
+         var command = (CommandOptions)Enum.Parse(typeof(CommandOptions), data[0], true);
          if (command.Equals(CommandOptions.PLACE)) {
             // Process parameters
             List<string> parameters;

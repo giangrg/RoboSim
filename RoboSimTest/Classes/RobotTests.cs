@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Drawing;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RoboSimLib;
 using RoboSimLib.Classes;
 
 namespace RoboSimTest {
-   [TestFixture]
+   [TestClass]
    public class RobotTests {
 
       private Robot TestRobo;
       private Bitmap TestImg;
 
-      [SetUp]
+      [TestInitialize]
       public void SetUp() {
          TestImg = new Bitmap(100, 100);
          TestRobo = new Robot(TestImg);
          TestRobo.Coordinate = new Point(200, 200);
       }
 
-      [Test]
+      [TestMethod]
       public void RejectsOutOfBoundsCoordinate() {
          TestRobo.Coordinate = new Point(501, 0);
 
@@ -28,7 +28,7 @@ namespace RoboSimTest {
          Assert.AreEqual(expected, actual);
       }
 
-      [Test]
+      [TestMethod]
       public void CanMoveNorthWhenFacingNorth() {
          TestRobo.MoveForward();
 
@@ -38,7 +38,7 @@ namespace RoboSimTest {
          Assert.AreEqual(expected, actual);
       }
 
-      [Test]
+      [TestMethod]
       public void CanMoveEastWhenFacingEast() {
          TestRobo.FaceDirection = Direction.East;
          TestRobo.MoveForward();
@@ -49,7 +49,7 @@ namespace RoboSimTest {
          Assert.AreEqual(expected, actual);
       }
 
-      [Test]
+      [TestMethod]
       public void CanMoveSouthWhenFacingSouth() {
          TestRobo.FaceDirection = Direction.South;
          TestRobo.MoveForward();
@@ -60,7 +60,7 @@ namespace RoboSimTest {
          Assert.AreEqual(expected, actual);
       }
 
-      [Test]
+      [TestMethod]
       public void CanMoveWestWhenFacingWest() {
          TestRobo.FaceDirection = Direction.West;
          TestRobo.MoveForward();
@@ -71,7 +71,7 @@ namespace RoboSimTest {
          Assert.AreEqual(expected, actual);
       }
 
-      [Test]
+      [TestMethod]
       public void CanRotateLeft() {
          TestRobo.FaceDirection = Direction.East;
          TestRobo.RotateRobo(RotateOptions.Left);
@@ -82,7 +82,7 @@ namespace RoboSimTest {
          Assert.AreEqual(expected, actual);
       }
 
-      [Test]
+      [TestMethod]
       public void CanRotateRight() {
          TestRobo.FaceDirection = Direction.East;
          TestRobo.RotateRobo(RotateOptions.Right);
@@ -93,7 +93,7 @@ namespace RoboSimTest {
          Assert.AreEqual(expected, actual);
       }
 
-      [Test]
+      [TestMethod]
       public void CanLoopBackFromLeft() {
          TestRobo.RotateRobo(RotateOptions.Left);
 
@@ -103,7 +103,7 @@ namespace RoboSimTest {
          Assert.AreEqual(expected, actual);
       }
 
-      [Test]
+      [TestMethod]
       public void CanLoopBackFromRight() {
          TestRobo.FaceDirection = Direction.West;
          TestRobo.RotateRobo(RotateOptions.Right);
